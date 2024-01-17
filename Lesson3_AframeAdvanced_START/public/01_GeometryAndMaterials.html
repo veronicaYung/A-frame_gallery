@@ -7,8 +7,24 @@
       <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     </head>
     <body>
+      <!-- use CTRL ALT i to use A-frame debugger -->
       <a-scene>
-        
+        <a-entity id="box"
+            position="0 2 -4.447"
+            geometry="primitive:box; width:3.0; height:4.0; depth:1.0"
+            material="color:#FF0000;">  
+        </a-entity>
+        <a-entity id="plane"
+            position="0 0 -3"
+            rotation="-90 0 0"
+            geometry="primitive: plane; width: 4; height: 4"
+            material="color: #0000FF;">
+        </a-entity>
+        <a-entity id="sphere"
+            position="0 1 -3"
+            geometry="primitive:sphere; radius:1.0"
+            material="color:#00FF00;">
+        </a-entity>
       </a-scene>
     </body>
 </html>

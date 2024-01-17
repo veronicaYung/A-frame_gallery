@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Hello, WebXR! - A-Frame</title>
+      <meta name="description" content="Hello, WebVR! - A-Frame">
+      <!--  note we are using 1.1.0 as most recent -->
+      <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+      <script src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
+    </head>
+    <body>
+      <!-- use CTRL ALT i to use A-frame debugger -->
+      <a-scene>
+        <!-- A frame uses an asset system to try and cache assets so we dont have to download-->
+        <a-assets>
+          <img id="earth_img" src="assets/Earth.jpg" crossorigin="anonymous">
+          <img id="mars_img" src="assets/MarsSurface.jpg" crossorigin="anonymous">
+        </a-assets>
+        <a-entity id="earth_plane"
+            position="0 0.5 -4"
+            rotation="-30 0 0"
+            scale="1 1 1"
+            geometry="primitive: plane; width: 1.5; height: 1.0;"
+            material="src:#earth_img">
+        </a-entity>
+        <a-entity id="mars_plane"
+            position="4 0.5 0"
+            rotation="-30 -90 0"
+            scale="1 1 1"
+            geometry="primitive: plane; width: 1.5; height: 1.0;"
+            material="src:#mars_img">
+        </a-entity>
+        <!--load in environment-->
+        <a-entity environment="preset:starry"></a-entity>
+      </a-scene>
+    </body>
+</html>
