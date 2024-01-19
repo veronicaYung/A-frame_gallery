@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Hello, WebXR! - A-Frame</title>
+      <meta name="description" content="Hello, WebVR! - A-Frame">
+      <!--  note we are using 1.1.0 as most recent -->
+      <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+      <script src="https://unpkg.com/aframe-environment-component@1.3.3/dist/aframe-environment-component.min.js"></script>
+    </head>
+    <body>
+      <!-- use CTRL ALT i to use A-frame debugger -->
+      <a-scene>
+        <!-- A frame uses an asset system to try and cache assets so we dont have to download-->
+        <a-assets>
+            <!--this is a spherical earth texture -->
+            <img id = "Earth_map" src = "assets/2k_earth_daymap.jpg" crossorigin = "anonymous">
+            <!-- image textures for planes-->
+            <img id="earth_img" src="assets/Earth.jpg" crossorigin="anonymous">
+            <img id="mars_img" src="assets/MarsSurface.jpg" crossorigin="anonymous">
+
+            <!--gltf is a web optimized 3D format. GLB is a binary form single file and 
+            GLTF is a folder of connected files. eg. textures and vertex data
+            response type needs to be array buffer to properly read the .glb format
+            (defaults to JSON)-->
+            <a-asset-item id="mars_model" src="assets/mars.glb" response-type = "arraybuffer"></a-asset-item>
+        </a-assets>
+
+        <!-- Earth Exhibit and Plaque -->
+        <a-entity id = "earth"
+            position = "0 3.5 -6"
+            rotation = "0 0 0"
+            scale = "1 1 1 "
+            geometry = "primitive: sphere; radius: 2;"
+            material = "src: #Earth_map">
+        </a-entity>
+
+        <a-entity id="earth_plane" position="0 0.5 -4" rotation="-30 0 0" scale="1 1 1">
+            <a-entity position="0.65 0 0.01"
+                geometry="primitive: plane; width: 1.5; height: 1.0;"
+                material="src:#earth_img"></a-entity>
+        
+            <a-entity position="0 0 -0.11"
+                geometry="primitive: box; width: 3.0; height: 1.2; depth: 0.2"
+                material="color: white"></a-entity>
+        
+            <a-entity position="-1.4 0.5 0.01" text="value:Earth;
+                color: black; font: roboto; width: 1.3; anchor:left; baseline:top; wrapCount:12;"></a-entity>
+        
+            <a-entity position="-1.4 0.25 0.01" text="value:Coral reefs are Earth's largest living structure.;
+                color: black; font: roboto; width: 1.25; anchor:left; baseline:top; wrapCount:18;"></a-entity>
+        </a-entity>
+       
+        <!-- Mars Exhibit and Plaque -->
+        <a-entity id = "mars"
+            position = "6 3.5 0"
+            rotation = "0 -90 0"
+            scale = "0.002 0.002 0.002 "
+            gltf-model = "#mars_model">
+        </a-entity>
+        <a-entity id="mars_plane" position="4 0.5 0" rotation="-30 -90 0" scale="1 1 1">
+            <a-entity position="0.65 0 0.01"
+                geometry="primitive: plane; width: 1.5; height: 1.0;"
+                material="src:#mars_img"></a-entity>
+            <a-entity position="0 0 -0.11"
+                geometry="primitive: box; width: 3.0; height: 1.2; depth: 0.2"
+                material="color: white"></a-entity>
+            <a-entity position="-1.4 0.5 0.01" text="value:Mars;
+                color: black; font: roboto; width: 1.25; anchor:left; baseline:top; wrapCount:12;"></a-entity>
+            <a-entity position="-1.4 0.25 0.01" text="value:Mars is the fourth planet from the sun.;
+                color: black; font: roboto; width: 1.25; anchor:left; baseline:top; wrapCount:18;"></a-entity>
+        </a-entity>
+
+        <!--load in environment-->
+        <a-entity environment="preset:japan"></a-entity>
+      </a-scene>
+    </body>
+</html>
